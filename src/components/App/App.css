@@ -4,8 +4,8 @@ body {
 }
 
 .App {
-    display: gird;
-    grid-template-rows: auto 1fr auto;
+    display: grid;
+    grid-template-rows: auto 1fr ;
 }
 
 h2, .subtitle-p {
