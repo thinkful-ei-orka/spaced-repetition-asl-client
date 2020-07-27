@@ -1,4 +1,11 @@
 button {
   margin-left: 10px;
   border-radius: 5px;
+  color: #013C74;
+  font-weight: bold;
+}
+
+button:hover {
+  color: white;
+  background-color: #013C74;
 }
