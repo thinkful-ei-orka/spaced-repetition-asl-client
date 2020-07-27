@@ -1,3 +1,19 @@
+body {
+  text-align: center;
+}
+
 .link {
   margin-left: 5px;
+  color: #E09E2D;
+}
+
+.link:hover {
+  color: #eecb00;
+  font-weight: bold;
+}
+
+input {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
