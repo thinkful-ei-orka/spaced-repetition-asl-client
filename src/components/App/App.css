@@ -1,6 +1,13 @@
 body {
     background-color: #03588F;
     font-family: 'Josefin Sands', sans-serif;
+}
 
+.App {
     display: gird;
+    grid-template-rows: auto 1fr auto;
+}
+
+h2, .subtitle-p {
+    margin: 10px;
 }

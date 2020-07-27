@@ -4,6 +4,13 @@
     src: url(../../Assets/fonts/CS.ttf);
 }
 
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
 a {
     text-decoration: none;
 }
@@ -19,15 +26,10 @@ h1 a:hover {
 
 nav a {
     color: #E09E2D;
+    margin: auto 5px 0
 }
 
 nav a:hover {
     color: #EECB00;
 }
 
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-}
