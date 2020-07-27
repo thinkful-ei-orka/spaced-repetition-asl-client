@@ -1,0 +1,33 @@
+/* header (h1(a-home), nav(a-login/logout/register) */
+@font-face {
+    font-family: C-S;
+    src: url(../../Assets/fonts/CS.ttf);
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 a {
+    font-family: C-S;
+    color: #D43C13;
+}
+
+h1 a:hover {
+    color: #F87E3D;
+}
+
+nav a {
+    color: #E09E2D;
+}
+
+nav a:hover {
+    color: #EECB00;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
