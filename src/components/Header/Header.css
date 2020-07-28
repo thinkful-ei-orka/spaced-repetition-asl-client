@@ -35,3 +35,7 @@ nav a:hover {
     font-weight: bold;
 }
 
+.user-name {
+    color: #E09E2D;
+    margin: auto 5px 0;
+}

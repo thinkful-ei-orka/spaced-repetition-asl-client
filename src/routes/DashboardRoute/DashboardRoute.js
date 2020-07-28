@@ -1,21 +1,64 @@
 import React, { Component } from 'react'
 
+import history from '../../history'
+import './DashboardRoute.css'
+import config from '../../config'
+import TokenService from '../../services/token-service'
+import { Link, Redirect } from 'react-router-dom'
+import Button from '../../components/Button/Button'
+
 class DashboardRoute extends Component {
+  state = {
+    lang_name: '',
+    total_score: 0,
+    words: []
+  }
+
+  componentDidMount = () => {
+    fetch(`${config.API_ENDPOINT}/language`, {
+      headers: {
+        'authorization': `Bearer ${TokenService.getAuthToken()}`
+      }
+    })
+    .then(res => {
+      if(!res.ok)
+        return res.json().then(e => Promise.reject(e))
+      return res.json()
+    })
+    .then(data => {
+      console.log(data)
+      console.log(data.words)
+      this.setState({ 
+        lang_name: data.language.name,
+        total_score: data.language.total_score,
+        words: data.words 
+      })
+    })
+    .catch(err =>{
+      console.log(err)
+    })
+  }
+
   render() {
+    console.log(this.state)
     return (
-      <div>
         <section>
-          <h2>American Sign Language</h2>
-          <button>Start Practice</button>
-        </section>
-        <section>
-          Total Score: __ Correct
-          <div className='Card'>
-            <div>image here</div>
-            0 Correct, 0 Incorrect
-          </div>
-        </section>
-      </div>
+          <h2>{this.state.lang_name}</h2>
+          <h2 className='total-correct'>Total correct answers: {this.state.total_score}</h2>
+          <Link to='/learn'>
+            <Button type='button'>Start Practice</Button>
+          </Link>
+          <h3 className='subtitle'>Words to practice</h3>
+          <ul className='word-list'>
+          {this.state.words.map(word => {
+            return (
+              <li className='Card' key={word.id}>
+                <img src={word.original} alt={word.description}/>
+                <p>{word.correct_count} Correct, {word.incorrect_count} Incorrect</p>
+              </li>)
+          })}
+        </ul>
+      </section>
     );
   }
 }

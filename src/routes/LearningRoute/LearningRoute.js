@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {withRouter} from 'react-router'
 
 class LearningRoute extends Component {
   render() {
@@ -10,4 +11,4 @@ class LearningRoute extends Component {
   }
 }
 
-export default LearningRoute
+export default withRouter(LearningRoute)

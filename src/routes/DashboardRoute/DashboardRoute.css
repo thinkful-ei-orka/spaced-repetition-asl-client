@@ -1,0 +1,30 @@
+.word-list {
+  margin: 5px;
+  padding: 5px;
+}
+
+.Card {
+  padding: 5px;
+  margin-top: 10px;
+}
+
+img {
+  width: 150px;
+}
+
+.total-correct {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 550px) {
+  img {
+    width: 200px;
+  }
+}
+
+@media screen and (min-width: 700) {
+  img {
+    width: 300px;
+  }
+}
