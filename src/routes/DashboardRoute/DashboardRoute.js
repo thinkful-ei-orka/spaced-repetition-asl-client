@@ -6,11 +6,15 @@ import config from '../../config'
 import TokenService from '../../services/token-service'
 import { Link, Redirect } from 'react-router-dom'
 import Button from '../../components/Button/Button'
+import UserContext from '../../contexts/UserContext'
+
+
 
 class DashboardRoute extends Component {
+  static contextType = UserContext
+
   state = {
-    lang_name: '',
-    total_score: 0,
+    language: {},
     words: []
   }
 
@@ -29,22 +33,25 @@ class DashboardRoute extends Component {
       console.log(data)
       console.log(data.words)
       this.setState({ 
-        lang_name: data.language.name,
-        total_score: data.language.total_score,
+        language: data.language,
         words: data.words 
       })
     })
+    .then(() => {
+      this.context.setLanguage({...this.state.language})
+    })
+    .then(console.log(this.context))
     .catch(err =>{
       console.log(err)
     })
   }
 
   render() {
-    console.log(this.state)
+    console.log('context', this.context)
     return (
         <section>
-          <h2>{this.state.lang_name}</h2>
-          <h2 className='total-correct'>Total correct answers: {this.state.total_score}</h2>
+          <h2>{this.state.language.name}</h2>
+          <h2 className='total-correct'>Total correct answers: {this.state.language.total_score}</h2>
           <Link to='/learn'>
             <Button type='button'>Start Practice</Button>
           </Link>

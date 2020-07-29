@@ -1,0 +1,19 @@
+input > .learn-guess-input {
+  border-radius: 5px;
+}
+
+img {
+  width: 150px;
+}
+
+@media screen and (min-width: 550px) {
+  img {
+    width: 200px;
+  }
+}
+
+@media screen and (min-width: 700) {
+  img {
+    width: 300px;
+  }
+}

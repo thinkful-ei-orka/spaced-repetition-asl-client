@@ -5,9 +5,11 @@ import IdleService from '../services/idle-service'
 
 const UserContext = React.createContext({
   user: {},
+  language: {},
   error: null,
   setError: () => {},
   clearError: () => {},
+  setLanguage: () => {},
   setUser: () => {},
   processLogin: () => {},
   processLogout: () => {},
@@ -60,6 +62,10 @@ export class UserProvider extends Component {
     this.setState({ user })
   }
 
+  setLanguage = language => {
+    this.setState({ language })
+  }
+
   processLogin = authToken => {
     TokenService.saveAuthToken(authToken)
     const jwtPayload = TokenService.parseAuthToken()
@@ -104,9 +110,11 @@ export class UserProvider extends Component {
   render() {
     const value = {
       user: this.state.user,
+      language: this.state.language,
       error: this.state.error,
       setError: this.setError,
       clearError: this.clearError,
+      setLanguage: this.setLanguage,
       setUser: this.setUser,
       processLogin: this.processLogin,
       processLogout: this.processLogout,

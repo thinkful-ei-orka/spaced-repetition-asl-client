@@ -4,5 +4,6 @@
   "wordIncorrectCount": 111,
   "totalScore": 999,
   "answer": "test-answer-from-incorrect-guess",
-  "isCorrect": false
+  "isCorrect": false,
+  "wordDescription": "desc"
 }

@@ -2,5 +2,6 @@
   "nextWord": "Testnextword",
   "wordCorrectCount": 222,
   "wordIncorrectCount": 333,
-  "totalScore": 999
+  "totalScore": 999,
+  "wordDescription": "desc"
 }
