@@ -17,14 +17,30 @@ img {
   margin-bottom: 10px;
 }
 
+h2 {
+  font-size: 1.5em;
+}
+
 @media screen and (min-width: 550px) {
   img {
     width: 200px;
   }
+
 }
 
-@media screen and (min-width: 700) {
+@media screen and (min-width: 700px) {
   img {
     width: 300px;
   }
+
+  p {
+    font-size: 1.3em;
+  }
 }
+
+@media screen and (min-width: 1000px) {
+  h2 {
+    font-size: 2.0em;
+  }
+}
+

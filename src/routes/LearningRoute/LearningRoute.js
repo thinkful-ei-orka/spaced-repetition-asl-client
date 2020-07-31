@@ -117,6 +117,7 @@ class LearningRoute extends Component {
           <h2>You were correct! :D</h2>
           <div className='DisplayFeedback'>
             <p className='hidden'>The correct translation for {this.state.answeredWord} was {this.state.translation} and you chose {this.state.guess}!</p>
+            <p>The correct translation for <img src={this.state.answeredWord} alt={this.state.desc}></img> was {this.state.translation} and you chose {this.state.guess}!</p>
           </div>
           <Button type='button' onClick={() => this.setState({answered: false})}>Try another word!</Button>
         </section>
@@ -130,7 +131,8 @@ class LearningRoute extends Component {
           </div>
           <h2>Good try, but not quite right :(</h2>
           <div className='DisplayFeedback'>
-            <p>The correct translation for {this.state.answeredWord} was {this.state.translation} and you chose {this.state.guess}!</p>
+            <p className='hidden'>The correct translation for {this.state.answeredWord} was {this.state.translation} and you chose {this.state.guess}!</p>
+            <p>The correct translation for <img src={this.state.answeredWord} alt={this.state.desc}></img> was {this.state.translation} and you chose {this.state.guess}!</p>
           </div>
           <Button type='button' onClick={() => this.setState({answered: false})}>Try another word!</Button>
         </section>

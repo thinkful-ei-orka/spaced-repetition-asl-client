@@ -39,3 +39,31 @@ nav a:hover {
     color: #E09E2D;
     margin: auto 5px 0;
 }
+  
+@media screen and (min-width: 700px) {
+    h1 a {
+        font-size: 1.3em;
+    }
+
+    nav a {
+        font-size: 1.1em;
+    }
+
+    .user-name {
+        font-size: 1.1em;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    h1 a {
+        font-size: 1.8em;
+    }
+    
+    nav a {
+        font-size: 1.4em;
+    }
+
+    .user-name {
+        font-size: 1.4em;
+    }
+}
