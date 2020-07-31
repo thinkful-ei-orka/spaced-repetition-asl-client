@@ -81,7 +81,9 @@ export class UserProvider extends Component {
   }
 
   processLogout = () => {
+    console.log('processing logout')
     TokenService.clearAuthToken()
+    console.log(TokenService.getAuthToken())
     TokenService.clearCallbackBeforeExpiry()
     IdleService.unRegisterIdleResets()
     this.setUser({})

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {withRouter} from 'react-router'
 
 import config from '../../config'
 import TokenService from '../../services/token-service'
@@ -13,13 +12,23 @@ class LearningRoute extends Component {
   state = {
     totalScore: 0,
     nextWord: '',
+    answeredWord: '',
     correctScore: 0,
     incorrectScore: 0,
     desc: '',
+    answered: false,
+    isCorrect: null,
+    guess: '',
+    translation: '',
   }
 
   componentDidMount = () => {
-    console.log('context for user: ', this.context)
+    console.log('went into componentDidMount')
+    this.getNewWord()
+  }
+
+  getNewWord = () => {
+    console.log('went into getNewWord')
     fetch(`${config.API_ENDPOINT}/language/head`, {
       headers: {
         'authorization': `Bearer ${TokenService.getAuthToken()}`
@@ -37,31 +46,104 @@ class LearningRoute extends Component {
         nextWord: data.nextWord,
         correctScore: data.wordCorrectCount,
         incorrectScore: data.wordIncorrectCount,
-        desc: data.wordDescription 
+        desc: data.wordDescription, 
+        answered: false,
+        isCorrect: null
       })
     })
     .catch(err =>{
       console.log(err)
     })
   }
+
+  handleGuess = ev => {
+    console.log('went into handleGuess')
+    ev.preventDefault()
+    const guess = ev.target.elements[0].value
+    console.log('guess is', guess)
+    console.log(JSON.stringify({guess: guess}))
+
+  fetch(`${config.API_ENDPOINT}/language/guess`, {
+    method: 'POST',
+    headers: {
+      'authorization': `Bearer ${TokenService.getAuthToken()}`,
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify({guess: guess})
+  })
+  .then(res => {
+    if(!res.ok)
+      return res.json().then(e => Promise.reject(e))
+    return res.json()
+  })
+  .then(data => {
+    console.log(data)
+    this.setState({
+        answeredWord: this.state.nextWord,
+        nextWord: data.nextWord,
+        correctScore: data.wordCorrectCount,
+        incorrectScore: data.wordIncorrectCount,
+        totalScore: data.totalScore,
+        isCorrect: data.isCorrect,
+        translation: data.answer,
+        answered: true,
+        guess: guess,
+    })
+  })
+  .catch(err =>{
+    console.log(err)
+  })
+}
+
   render() {
-    return (
-      <section>
-        <h2>Translate the word:</h2>
-        <img src={this.state.nextWord} alt={this.state.desc}/>
-        <span className='word-to-guess'>{this.state.nextWord}</span>
-
-        <p>Your total score is: {this.state.totalScore}</p>
-
-        <form className='quess'>
-          <label htmlFor='learn-guess-input'>What's the translation for this word?</label>
-          <input required id='learn-guess-input' className='learn-guess-input' type='text'></input>
-          <Button type='submit'>Submit your answer</Button>
-        </form>
-        <p className='word-stats'>You have answered this word correctly {this.state.correctScore} times.</p>
-        <p className='word-stats'>You have answered this word incorrectly {this.state.incorrectScore} times.</p>
-      </section>
-    );
+    console.log(this.state)
+    if(this.state.answered === false) {
+      return (
+        <section>
+          <h2>Translate the word:</h2>
+          <span className='word-to-guess'>{this.state.nextWord}</span>
+          <div><img src={this.state.nextWord} alt={this.state.desc}/></div>
+  
+          <p>Your total score is: {this.state.totalScore}</p>
+  
+          <form className='quess' onSubmit={(ev) => this.handleGuess(ev)}>
+            <label htmlFor='learn-guess-input'>What's the translation for this word?</label>
+            <input required id='learn-guess-input' className='learn-guess-input' type='text'></input>
+            <Button type='submit'>Submit your answer</Button>
+          </form>
+          <p className='word-stats'>You have answered this word correctly {this.state.correctScore} times.</p>
+          <p className='word-stats'>You have answered this word incorrectly {this.state.incorrectScore} times.</p>
+        </section>
+      );
+    }
+    else if (this.state.answered === true && this.state.isCorrect === true) {
+      return (
+        <section>
+          <div className='DisplayScore'>
+            <p>Your total score is: {this.state.totalScore}</p>
+          </div>
+          <h2>You were correct! :D</h2>
+          <div className='DisplayFeedback'>
+            <p>The correct translation for {this.state.answeredWord} was {this.state.translation} and you chose {this.state.guess}!</p>
+          </div>
+          <Button type='button' onClick={() => this.setState({answered: false})}>Try another word!</Button>
+        </section>
+      );
+    }
+    else if (this.state.answered === true && this.state.isCorrect === false) {
+      return (
+        <section>
+          <div className='DisplayScore'>
+            <p>Your total score is: {this.state.totalScore}</p>
+          </div>
+          <h2>Good try, but not quite right :(</h2>
+          <div className='DisplayFeedback'>
+            <p>The correct translation for {this.state.answeredWord} was {this.state.translation} and you chose {this.state.guess}!</p>
+          </div>
+          <Button type='button' onClick={() => this.setState({answered: false})}>Try another word!</Button>
+        </section>
+      );
+    }
   }
 }
 

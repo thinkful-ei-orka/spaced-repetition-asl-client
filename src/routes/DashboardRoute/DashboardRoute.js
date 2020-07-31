@@ -30,8 +30,8 @@ class DashboardRoute extends Component {
       return res.json()
     })
     .then(data => {
-      console.log(data)
-      console.log(data.words)
+      // console.log(data)
+      // console.log(data.words)
       this.setState({ 
         language: data.language,
         words: data.words 
@@ -47,7 +47,7 @@ class DashboardRoute extends Component {
   }
 
   render() {
-    console.log('context', this.context)
+    // console.log('context', this.context)
     return (
         <section>
           <h2>{this.state.language.name}</h2>
