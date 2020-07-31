@@ -6,6 +6,10 @@ img {
   width: 150px;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 @media screen and (min-width: 550px) {
   img {
     width: 200px;

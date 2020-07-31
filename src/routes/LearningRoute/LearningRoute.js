@@ -93,7 +93,7 @@ class LearningRoute extends Component {
       return (
         <section>
           <h2>Translate the word:</h2>
-          <span className='word-to-guess'>{this.state.nextWord}</span>
+          <span className='word-to-guess hidden'>{this.state.nextWord}</span>
           <div><img src={this.state.nextWord} alt={this.state.desc}/></div>
   
           <p>Your total score is: {this.state.totalScore}</p>
@@ -116,7 +116,7 @@ class LearningRoute extends Component {
           </div>
           <h2>You were correct! :D</h2>
           <div className='DisplayFeedback'>
-            <p>The correct translation for {this.state.answeredWord} was {this.state.translation} and you chose {this.state.guess}!</p>
+            <p className='hidden'>The correct translation for {this.state.answeredWord} was {this.state.translation} and you chose {this.state.guess}!</p>
           </div>
           <Button type='button' onClick={() => this.setState({answered: false})}>Try another word!</Button>
         </section>
