@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 
-import history from '../../history'
 import './DashboardRoute.css'
 import config from '../../config'
 import TokenService from '../../services/token-service'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import UserContext from '../../contexts/UserContext'
 
@@ -30,8 +29,6 @@ class DashboardRoute extends Component {
       return res.json()
     })
     .then(data => {
-      // console.log(data)
-      // console.log(data.words)
       this.setState({ 
         language: data.language,
         words: data.words 
@@ -40,14 +37,12 @@ class DashboardRoute extends Component {
     .then(() => {
       this.context.setLanguage({...this.state.language})
     })
-    .then(console.log(this.context))
     .catch(err =>{
       console.log(err)
     })
   }
 
   render() {
-    // console.log('context', this.context)
     return (
         <section>
           <h2>{this.state.language.name}</h2>

@@ -206,7 +206,6 @@ describe(`User story: Login`, function() {
 
         cy.window()
           .then(win => {
-            console.log(Cypress.env('TOKEN_KEY'))
             const tokenInStorage = win.localStorage.getItem(
               Cypress.env('TOKEN_KEY')
             )

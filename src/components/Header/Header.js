@@ -8,7 +8,6 @@ class Header extends Component {
   static contextType = UserContext
 
   handleLogoutClick = () => {
-    console.log('logout attempt')
     this.context.processLogout()
   }
 

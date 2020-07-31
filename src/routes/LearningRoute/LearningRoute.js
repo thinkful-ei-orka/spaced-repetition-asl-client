@@ -23,12 +23,10 @@ class LearningRoute extends Component {
   }
 
   componentDidMount = () => {
-    console.log('went into componentDidMount')
     this.getNewWord()
   }
 
   getNewWord = () => {
-    console.log('went into getNewWord')
     fetch(`${config.API_ENDPOINT}/language/head`, {
       headers: {
         'authorization': `Bearer ${TokenService.getAuthToken()}`
@@ -40,7 +38,6 @@ class LearningRoute extends Component {
       return res.json()
     })
     .then(data => {
-      console.log(data)
       this.setState({ 
         totalScore: data.totalScore,
         nextWord: data.nextWord,
@@ -57,11 +54,8 @@ class LearningRoute extends Component {
   }
 
   handleGuess = ev => {
-    console.log('went into handleGuess')
     ev.preventDefault()
     const guess = ev.target.elements[0].value
-    console.log('guess is', guess)
-    console.log(JSON.stringify({guess: guess}))
 
   fetch(`${config.API_ENDPOINT}/language/guess`, {
     method: 'POST',
@@ -77,7 +71,6 @@ class LearningRoute extends Component {
     return res.json()
   })
   .then(data => {
-    console.log(data)
     this.setState({
         answeredWord: this.state.nextWord,
         nextWord: data.nextWord,
@@ -96,7 +89,6 @@ class LearningRoute extends Component {
 }
 
   render() {
-    console.log(this.state)
     if(this.state.answered === false) {
       return (
         <section>
