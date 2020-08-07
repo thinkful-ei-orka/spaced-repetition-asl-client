@@ -11,3 +11,7 @@ body {
 h2, .subtitle-p {
     margin: 10px;
 }
+
+main {
+    color: #C9C9C9;
+}

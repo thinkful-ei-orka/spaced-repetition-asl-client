@@ -4,6 +4,8 @@ input > .learn-guess-input {
 
 img {
   width: 150px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hidden {
@@ -12,6 +14,19 @@ img {
 
 h2 {
   font-size: 1.5em;
+}
+
+.DisplayFeedback {
+  text-align: center;
+}
+
+.DisplayFeedback p,img {
+  display: block;
+}
+
+.FeedbackWords {
+  font-size: 1.4em;
+  font-weight: bolder;
 }
 
 @media screen and (min-width: 550px) {
