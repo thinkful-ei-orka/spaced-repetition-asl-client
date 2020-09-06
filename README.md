@@ -1,4 +1,4 @@
-# Spaced Repetition Capstone
+# CLERC Spaced Repetition Capstone
 
 ## Setup
 
